@@ -1,27 +1,26 @@
 ## Heading ##
-  > Pokedex. Search, store, and retrieve pokemons from the database.
-  Stored pokemons will move around on the screen for users to click on for level up - evolve.
+  > Pokedex. Search and store pokemons interactively!
 
 ## Sub-Heading ##
-  > This is for children's entertainment.
+  > For child and adult, all alike.
 
 ## Summary ##
-  > Store pokemons, and level up by clicking on them!
+  > Search and store pokemons by using the input field of pokedex. Click on a stored pokemon so that he/she changes body orientation, and cries if there's audio (currently a feature limited to charmander, squirtle, pikachu, and 'robin'). Press on the 'evaluate' button to analyze the overall description of the pokemon (currently limited to charmander and in Japanese). If at all you need help, call help desk -- yet be warned! Press on the audio play button on the bottom, and listen to your favorite Pokemon theme song! Gotta catch'em all!
 
 ## Problem ##
-  > This product solves boredom.
+  > Boredom is prevalent in modern society. Especially when waiting in long line for a cup of coffee at Starbucks.
 
 ## Solution ##
-  > This product effectively kills time when there is nothing else to do.
+  > This product kills time very effectively.
 
 ## Quote from You ##
-  > "Gotta catch'em all!"
+  > "Gotta catch'em all?"
 
 ## How to Get Started ##
-  > It's really easy! Just search and store the pokemons you like!
+  > It's really easy! Just search and store the pokemons you like, and click away!
 
 ## Customer Quote ##
-  > "This game is an effective time-killer! I had a final exam and this game made me totally unprepared for it!"
+  > "This game is such an effective time-killer that I was totally unprepared for my final exam! Thanks Dan for creating this blackhole from which there is not coming out <3"
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Just do it.

@@ -34,7 +34,7 @@ class Search extends React.Component {
     var scope = this;
     return (
       <div>
-        <h4>Pokedex</h4>
+        <br></br>
         <form onSubmit={this.pikachu}>
           Enter a pokemon name: <input value={this.state.name} onChange={this.onChange}/>
           <button type="submit">Search Pokemon</button>

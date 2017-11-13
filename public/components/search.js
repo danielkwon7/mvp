@@ -58,11 +58,7 @@ var Search = function (_React$Component) {
       return React.createElement(
         "div",
         null,
-        React.createElement(
-          "h4",
-          null,
-          "Pokedex"
-        ),
+        React.createElement("br", null),
         React.createElement(
           "form",
           { onSubmit: this.pikachu },

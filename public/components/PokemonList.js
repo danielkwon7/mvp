@@ -35,7 +35,8 @@ var Pokemon = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Pokemon.__proto__ || Object.getPrototypeOf(Pokemon)).call(this, props));
 
     _this.state = {
-      hello: true
+      hello: true,
+      health: _this.props.stats.hp
     };
     _this.changeVisual = _this.changeVisual.bind(_this);
     return _this;
@@ -46,12 +47,22 @@ var Pokemon = function (_React$Component) {
     value: function changeVisual() {
       this.setState({ hello: !this.state.hello });
     }
+
+    // decreaseHP() {
+    //   this.setState({})
+    // }
+
   }, {
     key: 'render',
     value: function render() {
       var scope = this;
-      var deletebutton;
-      if (scope.props.name !== 'daniel' && scope.props.name !== 'robin') {
+      var deletebutton = '';
+      var helpdesk = '';
+      var pokedex = '';
+      var attachDex = function attachDex(name) {
+        return 'dex' + name;
+      };
+      if (scope.props.name !== 'daniel' && scope.props.name !== 'robin' && scope.props.name !== 'charmander') {
         deletebutton = React.createElement(
           'button',
           { onClick: function onClick() {
@@ -59,8 +70,36 @@ var Pokemon = function (_React$Component) {
             } },
           'Erase'
         );
-      } else {
-        deletebutton = '';
+      } else if (scope.props.name === 'robin') {
+        deletebutton = React.createElement(
+          'button',
+          { onClick: function onClick() {
+              scope.props.erase(scope.props.name);
+            } },
+          'Erase'
+        );
+        helpdesk = React.createElement(
+          'button',
+          { onClick: function onClick() {
+              scope.props.audio(scope.props.name);
+            } },
+          'Help Desk'
+        );
+      } else if (scope.props.name === 'charmander') {
+        deletebutton = React.createElement(
+          'button',
+          { onClick: function onClick() {
+              scope.props.erase(scope.props.name);
+            } },
+          'Erase'
+        );
+        pokedex = React.createElement(
+          'button',
+          { onClick: function onClick() {
+              scope.props.audio(attachDex(scope.props.name));
+            } },
+          'Evaluate'
+        );
       }
       return React.createElement(
         'div',
@@ -70,11 +109,15 @@ var Pokemon = function (_React$Component) {
           }, src: scope.props.image[Math.floor(Math.random() * scope.props.imagelength)] }),
         React.createElement(
           'h5',
-          { className: scope.props.name },
+          { id: 'name', className: scope.props.name },
           scope.props.name
         ),
         ' ',
         deletebutton,
+        ' ',
+        helpdesk,
+        ' ',
+        pokedex,
         Object.keys(scope.props.stats).map(function (stat) {
           return React.createElement(
             'div',

@@ -12,7 +12,8 @@ class Pokemon extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hello: true
+      hello: true,
+      health: this.props.stats.hp
     }
     this.changeVisual = this.changeVisual.bind(this);
   }
@@ -21,18 +22,29 @@ class Pokemon extends React.Component {
     this.setState({hello: !this.state.hello})
   }
 
+  // decreaseHP() {
+  //   this.setState({})
+  // }
+
   render() {
     var scope = this;
-    var deletebutton;
-    if (scope.props.name !== 'daniel' && scope.props.name !== 'robin') {
+    var deletebutton = '';
+    var helpdesk = '';
+    var pokedex = '';
+    var attachDex = (name) => ('dex' + name);
+    if (scope.props.name !== 'daniel' && scope.props.name !== 'robin' && scope.props.name !== 'charmander') {
       deletebutton = <button onClick={function(){scope.props.erase(scope.props.name)}}>Erase</button>
-    } else {
-      deletebutton = ''
+    } else if (scope.props.name === 'robin') {
+      deletebutton = <button onClick={function(){scope.props.erase(scope.props.name)}}>Erase</button>;
+      helpdesk = <button onClick={function() {scope.props.audio(scope.props.name)}}>Help Desk</button>;
+    } else if (scope.props.name === 'charmander') {
+      deletebutton = <button onClick={function(){scope.props.erase(scope.props.name)}}>Erase</button>;
+      pokedex = <button onClick={function() {scope.props.audio(attachDex(scope.props.name))}}>Evaluate</button>;
     }
     return (
       <div>
         <img onClick={function(){scope.props.audio(scope.props.name); scope.changeVisual();}} src={scope.props.image[Math.floor(Math.random() * scope.props.imagelength)]}/>
-          <h5 className={scope.props.name}>{scope.props.name}</h5> {deletebutton}
+          <h5 id='name' className={scope.props.name}>{scope.props.name}</h5> {deletebutton} {helpdesk} {pokedex}
 
         {Object.keys(scope.props.stats).map(stat => (
           <div><span>{stat}</span> <progress  id={stat} value={scope.props.stats[stat]} max="100"></progress></div>

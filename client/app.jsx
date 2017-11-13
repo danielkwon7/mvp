@@ -29,16 +29,28 @@ class App extends React.Component {
         scope.playAudio('pikachu');
       }
     })
+    // setInterval(scope.moveAroundMew, 1000)
   }
 
+  // moveAroundMew() {
+  //   var top = $('body').height() * Math.random() * .8;
+  //   var left = $('body').width() * Math.random() * .7;
+  //   document.getElementById('mew').animate({top: top, left: left})
+  // }
+
   playAudio(name) {
-    if (name === 'daniel') {
+    if (name === 'daniel' || name === 'robin' || name === 'squirtle' || name === 'charmander' || name === 'jolteon' || name === 'dexcharmander' || name === 'mew') {
       var audio = document.getElementById(name);
       audio.play();
     }
   }
 
   erase(name) {
+    if (name === 'robin') {
+      alert('Nope');
+      return;
+    }
+
     var name = name;
     var next = this;
     $.ajax({
