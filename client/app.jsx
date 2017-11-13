@@ -17,6 +17,8 @@ class App extends React.Component {
     this.addPokemon = this.addPokemon.bind(this);
   }
 
+
+
   componentDidMount() {
     var scope = this;
     $.ajax({
@@ -30,8 +32,27 @@ class App extends React.Component {
   }
 
   playAudio(name) {
-    var audio = document.getElementById(name);
-    audio.play();
+    if (name === 'daniel') {
+      var audio = document.getElementById(name);
+      audio.play();
+    }
+  }
+
+  erase(name) {
+    var name = name;
+    var next = this;
+    $.ajax({
+      type: 'POST',
+      url: '/erase',
+      data: name,
+      success: function(data) {
+        console.log('NAME------', name);
+        console.log(next);
+        var filter = next.state.pokemons.filter(function(pokemon) {return pokemon.name !== name})
+        next.setState({pokemons: filter});
+        console.log('ERASE---------')
+      }
+    })
   }
 
   search(name) {
@@ -65,7 +86,7 @@ class App extends React.Component {
     return (
       <div>
         <Search search={this.search} add={this.addPokemon}/>
-        <PokemonList pokemons={this.state.pokemons} audio={this.playAudio}/>
+        <PokemonList erase={this.erase} pokemons={this.state.pokemons} audio={this.playAudio}/>
       </div>
     )
   }

@@ -9,15 +9,28 @@ app.use(bodyParser());
 
 app.get('/pokemons', function(req, res) {
 
-   var result = [{name:'daniel', image: ['http://assets1.ignimgs.com/2017/09/07/ashs-pikachu-m20-us-and-um-1504769753853_1280w.jpg'], stats: {frontend: 30, backend: 20 , meow: 10}}]
+   var result = [{name:'daniel', image: ['http://assets1.ignimgs.com/2017/09/07/ashs-pikachu-m20-us-and-um-1504769753853_1280w.jpg'], stats: {frontend: 30, backend: 20 , meow: 10, pairing: 5, soloing: 1, sleeping: 100}}]
+   var robin = {name: 'robin', image: ['https://avatars3.githubusercontent.com/u/7613067?s=460&v=4'], stats: {logic: 95, whiteboarding: 85, smile:90, scary: 100, beard: 10}}
 
    Pokemon.find(function(err, data) {
     result = result.concat(data);
+    result = result.concat(robin);
     console.log('THIS IS THE RESULT ---------------', result);
     res.send(result);
     res.end();
    })
 })
+
+app.post('/erase', function(req, res) {
+  var name = Object.keys(req.body)[0];
+  Pokemon.remove({ name: name }, function(err) {
+    if (err) throw err;
+    console.log('removed!')
+    res.send()
+    res.end()
+  })
+})
+
 app.post('/pokemons', function(req, res) {
   var name = Object.keys(req.body)[0];
   getPokemonByName(name, function(err, body) {
@@ -42,6 +55,12 @@ app.post('/pokemons', function(req, res) {
         pokeimage = result;
         var pokemonobject = { name: pokename, image: pokeimage, type: type, stats: stats};
         var pokemon = new Pokemon(pokemonobject)
+        // Pokemon.update({name: pokename}, {$set: {name: pokename, image: pokeimage, type: type, stats: stats}}, {upsert: true}, function(err) {
+        //   if (err) throw err;
+        //   res.send()
+        //   res.end()
+        // })
+
         pokemon.save(function(err) {
           if (err) throw err;
           res.send(pokemonobject)

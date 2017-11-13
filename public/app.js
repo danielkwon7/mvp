@@ -49,8 +49,30 @@ var App = function (_React$Component) {
   }, {
     key: 'playAudio',
     value: function playAudio(name) {
-      var audio = document.getElementById(name);
-      audio.play();
+      if (name === 'daniel') {
+        var audio = document.getElementById(name);
+        audio.play();
+      }
+    }
+  }, {
+    key: 'erase',
+    value: function erase(name) {
+      var name = name;
+      var next = this;
+      $.ajax({
+        type: 'POST',
+        url: '/erase',
+        data: name,
+        success: function success(data) {
+          console.log('NAME------', name);
+          console.log(next);
+          var filter = next.state.pokemons.filter(function (pokemon) {
+            return pokemon.name !== name;
+          });
+          next.setState({ pokemons: filter });
+          console.log('ERASE---------');
+        }
+      });
     }
   }, {
     key: 'search',
@@ -88,7 +110,7 @@ var App = function (_React$Component) {
         'div',
         null,
         React.createElement(Search, { search: this.search, add: this.addPokemon }),
-        React.createElement(PokemonList, { pokemons: this.state.pokemons, audio: this.playAudio })
+        React.createElement(PokemonList, { erase: this.erase, pokemons: this.state.pokemons, audio: this.playAudio })
       );
     }
   }]);
