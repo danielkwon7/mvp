@@ -42,7 +42,6 @@ var App = function (_React$Component) {
         url: '/pokemons',
         success: function success(data) {
           scope.setState({ pokemons: data });
-          scope.playAudio('pikachu');
         }
       });
       // setInterval(scope.moveAroundMew, 1000)
@@ -55,9 +54,14 @@ var App = function (_React$Component) {
     // }
 
   }, {
+    key: 'onMewClick',
+    value: function onMewClick() {
+      alert('Congratulations! You have just spotted a legendary pokemon');
+    }
+  }, {
     key: 'playAudio',
     value: function playAudio(name) {
-      if (name === 'daniel' || name === 'robin' || name === 'squirtle' || name === 'charmander' || name === 'jolteon' || name === 'dexcharmander' || name === 'mew') {
+      if (name === 'daniel' || name === 'robin' || name === 'squirtle' || name === 'charmander' || name === 'jolteon' || name === 'dexcharmander' || name === 'mew' || name === 'dexsquirtle') {
         var audio = document.getElementById(name);
         audio.play();
       }
@@ -66,7 +70,7 @@ var App = function (_React$Component) {
     key: 'erase',
     value: function erase(name) {
       if (name === 'robin') {
-        alert('Nope');
+        alert('Nope.');
         return;
       }
 
@@ -123,7 +127,7 @@ var App = function (_React$Component) {
         'div',
         null,
         React.createElement(Search, { search: this.search, add: this.addPokemon }),
-        React.createElement(PokemonList, { erase: this.erase, pokemons: this.state.pokemons, audio: this.playAudio })
+        React.createElement(PokemonList, { erase: this.erase, pokemons: this.state.pokemons, mew: this.onMewClick, audio: this.playAudio })
       );
     }
   }]);

@@ -17,8 +17,6 @@ class App extends React.Component {
     this.addPokemon = this.addPokemon.bind(this);
   }
 
-
-
   componentDidMount() {
     var scope = this;
     $.ajax({
@@ -26,7 +24,6 @@ class App extends React.Component {
       url: '/pokemons',
       success: function(data) {
         scope.setState({ pokemons: data });
-        scope.playAudio('pikachu');
       }
     })
     // setInterval(scope.moveAroundMew, 1000)
@@ -38,8 +35,12 @@ class App extends React.Component {
   //   document.getElementById('mew').animate({top: top, left: left})
   // }
 
+  onMewClick() {
+    alert('Congratulations! You have just spotted a legendary pokemon')
+  }
+
   playAudio(name) {
-    if (name === 'daniel' || name === 'robin' || name === 'squirtle' || name === 'charmander' || name === 'jolteon' || name === 'dexcharmander' || name === 'mew') {
+    if (name === 'daniel' || name === 'robin' || name === 'squirtle' || name === 'charmander' || name === 'jolteon' || name === 'dexcharmander' || name === 'mew' || name === 'dexsquirtle') {
       var audio = document.getElementById(name);
       audio.play();
     }
@@ -47,7 +48,7 @@ class App extends React.Component {
 
   erase(name) {
     if (name === 'robin') {
-      alert('Nope');
+      alert('Nope.');
       return;
     }
 
@@ -98,7 +99,7 @@ class App extends React.Component {
     return (
       <div>
         <Search search={this.search} add={this.addPokemon}/>
-        <PokemonList erase={this.erase} pokemons={this.state.pokemons} audio={this.playAudio}/>
+        <PokemonList erase={this.erase} pokemons={this.state.pokemons} mew={this.onMewClick} audio={this.playAudio}/>
       </div>
     )
   }

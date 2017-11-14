@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -10,19 +10,20 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var PokemonList = function PokemonList(props) {
   return React.createElement(
-    'div',
+    "div",
     null,
     React.createElement(
-      'h5',
+      "h5",
       null,
-      'You currently have ',
-      props.pokemons.length > 1 ? props.pokemons.length + ' pokemons' : props.pokemons.length + ' pokemon',
-      '.'
+      "You currently have ",
+      props.pokemons.length > 1 ? props.pokemons.length + " pokemons" : props.pokemons.length + " pokemon",
+      "."
     ),
     console.log('NEW!!!!!', props.pokemons),
     props.pokemons.map(function (pokemon) {
       return React.createElement(Pokemon, { erase: props.erase, imagelength: pokemon.image.length, image: pokemon.image, name: pokemon.name, type: pokemon.type, stats: pokemon.stats, audio: props.audio });
-    })
+    }),
+    React.createElement("img", { id: "mew", onClick: props.mew, src: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png" })
   );
 };
 
@@ -43,9 +44,9 @@ var Pokemon = function (_React$Component) {
   }
 
   _createClass(Pokemon, [{
-    key: 'changeVisual',
+    key: "changeVisual",
     value: function changeVisual() {
-      this.setState({ hello: !this.state.hello });
+      this.setState({ hello: !this.state.hello, health: this.state.health - 10 });
     }
 
     // decreaseHP() {
@@ -53,7 +54,7 @@ var Pokemon = function (_React$Component) {
     // }
 
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var scope = this;
       var deletebutton = '';
@@ -62,73 +63,73 @@ var Pokemon = function (_React$Component) {
       var attachDex = function attachDex(name) {
         return 'dex' + name;
       };
-      if (scope.props.name !== 'daniel' && scope.props.name !== 'robin' && scope.props.name !== 'charmander') {
+      if (scope.props.name !== 'daniel' && scope.props.name !== 'robin' && scope.props.name !== 'charmander' && scope.props.name !== 'squirtle') {
         deletebutton = React.createElement(
-          'button',
+          "button",
           { onClick: function onClick() {
               scope.props.erase(scope.props.name);
             } },
-          'Erase'
+          "Erase"
         );
       } else if (scope.props.name === 'robin') {
         deletebutton = React.createElement(
-          'button',
+          "button",
           { onClick: function onClick() {
               scope.props.erase(scope.props.name);
             } },
-          'Erase'
+          "Erase"
         );
         helpdesk = React.createElement(
-          'button',
+          "button",
           { onClick: function onClick() {
               scope.props.audio(scope.props.name);
             } },
-          'Help Desk'
+          "Help Desk"
         );
-      } else if (scope.props.name === 'charmander') {
+      } else if (scope.props.name === 'charmander' || scope.props.name === 'squirtle') {
         deletebutton = React.createElement(
-          'button',
+          "button",
           { onClick: function onClick() {
               scope.props.erase(scope.props.name);
             } },
-          'Erase'
+          "Erase"
         );
         pokedex = React.createElement(
-          'button',
+          "button",
           { onClick: function onClick() {
               scope.props.audio(attachDex(scope.props.name));
             } },
-          'Evaluate'
+          "Evaluate"
         );
       }
       return React.createElement(
-        'div',
+        "div",
         null,
-        React.createElement('img', { onClick: function onClick() {
+        React.createElement("img", { onClick: function onClick() {
             scope.props.audio(scope.props.name);scope.changeVisual();
           }, src: scope.props.image[Math.floor(Math.random() * scope.props.imagelength)] }),
         React.createElement(
-          'h5',
-          { id: 'name', className: scope.props.name },
+          "h5",
+          { id: "name", className: scope.props.name },
           scope.props.name
         ),
-        ' ',
+        " ",
         deletebutton,
-        ' ',
+        " ",
         helpdesk,
-        ' ',
+        " ",
         pokedex,
         Object.keys(scope.props.stats).map(function (stat) {
           return React.createElement(
-            'div',
+            "div",
             null,
             React.createElement(
-              'span',
+              "span",
               null,
               stat
             ),
-            ' ',
-            React.createElement('progress', { id: stat, value: scope.props.stats[stat], max: '100' })
+            " ",
+            React.createElement("progress", { id: stat, value: scope.props.stats[stat], max: "100" })
           );
         })
       );

@@ -5,6 +5,7 @@ const PokemonList = (props) => (
     {props.pokemons.map(pokemon => (
       <Pokemon erase={props.erase} imagelength={pokemon.image.length} image={pokemon.image} name={pokemon.name} type={pokemon.type} stats={pokemon.stats} audio={props.audio}/>
     ))}
+    <img id="mew" onClick={props.mew} src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png"/>
   </div>
 )
 
@@ -19,7 +20,7 @@ class Pokemon extends React.Component {
   }
 
   changeVisual() {
-    this.setState({hello: !this.state.hello})
+    this.setState({hello: !this.state.hello, health: this.state.health - 10});
   }
 
   // decreaseHP() {
@@ -32,12 +33,12 @@ class Pokemon extends React.Component {
     var helpdesk = '';
     var pokedex = '';
     var attachDex = (name) => ('dex' + name);
-    if (scope.props.name !== 'daniel' && scope.props.name !== 'robin' && scope.props.name !== 'charmander') {
+    if (scope.props.name !== 'daniel' && scope.props.name !== 'robin' && scope.props.name !== 'charmander' && scope.props.name !== 'squirtle') {
       deletebutton = <button onClick={function(){scope.props.erase(scope.props.name)}}>Erase</button>
     } else if (scope.props.name === 'robin') {
       deletebutton = <button onClick={function(){scope.props.erase(scope.props.name)}}>Erase</button>;
       helpdesk = <button onClick={function() {scope.props.audio(scope.props.name)}}>Help Desk</button>;
-    } else if (scope.props.name === 'charmander') {
+    } else if (scope.props.name === 'charmander' || scope.props.name === 'squirtle') {
       deletebutton = <button onClick={function(){scope.props.erase(scope.props.name)}}>Erase</button>;
       pokedex = <button onClick={function() {scope.props.audio(attachDex(scope.props.name))}}>Evaluate</button>;
     }
@@ -49,6 +50,7 @@ class Pokemon extends React.Component {
         {Object.keys(scope.props.stats).map(stat => (
           <div><span>{stat}</span> <progress  id={stat} value={scope.props.stats[stat]} max="100"></progress></div>
         ))}
+
       </div>
     )
   }
